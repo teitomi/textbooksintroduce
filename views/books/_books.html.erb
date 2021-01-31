@@ -1,0 +1,43 @@
+<% books.each do |t| %>
+    <div class="book">
+        <div class="review-container">
+            <div class="about">
+                <h4>参考書・問題集の名前</h4>
+                <%= t.title %>
+                <h4>参考書・問題集の写真</h4>
+                <%= image_tag t.image_url, size: "250x200" if t.image? %>
+            </div>
+            <div class="suitable">
+                <h4>科目</h4>
+                <%= t.subject %>
+                <h4>誰向けの参考書・問題集か</h4>
+                <%= t.suitable %>
+            </div>
+            <div class="review">
+                <h4>レビュー本文</h4>
+                <%= t.review %>
+            </div>
+        </div>
+        <div class="info">　　　　　
+            <a href="/users/<%= t.user.id %>"><%= t.user.name %></a>
+            <% if user_signed_in? %>
+                <% if current_user.already_liked?(t) %>
+                    <%= link_to book_like_path(id: t.id, book_id: t.id), method: :delete do %>
+                        <i class="fas fa-heart"></i><%= t.likes.count %>
+                    <% end %>
+                <% else %>
+                    <%= link_to book_likes_path(id: t.id, book_id: t.id), method: :post do %>
+                        <i class="far fa-heart"></i><%= t.likes.count %>
+                    <% end %>
+                <% end %>
+                <i class="far fa-comments"><%= link_to "コメントする", book_path(t.id) %></i>
+            <% else %>
+                <i class="far fa-heart"></i><%= t.likes.count %>
+            <% end %>
+            <%= link_to "詳細・コメントを見る", book_path(t.id) %>
+            <% if user_signed_in? && current_user.id == t.user_id %>
+                <%= link_to "編集する", edit_book_path(t.id) %>
+            <% end %>
+        </div>
+    </div>
+<% end %>

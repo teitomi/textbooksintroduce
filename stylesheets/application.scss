@@ -1,0 +1,59 @@
+@import "color";
+
+ * {
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizeing: border-box;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "メイリオ",
+      Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+  }
+  header {
+    background-color:$main;
+    height: 80px;
+    width:100%;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px 10px 10px;
+  }
+
+  .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .links{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .links h3{
+    padding:0 10px;
+  }
+
+  header a {
+    color: white; 
+    text-decoration: none; 
+  }
+
+  footer {
+    color: white;
+    height: 30px;
+    background-color: #000;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: fixed;
+  }
+
+  .push{
+    height:30px;
+  }
+  

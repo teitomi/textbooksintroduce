@@ -1,0 +1,76 @@
+@import "color";
+@import "post";
+
+.maintitle{
+    height:60px;
+    padding-top:13px;
+    padding-left:10px;
+}
+.profile{
+    height:300px;
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-right:15%;
+    padding-left:15%;
+    background-color:$sub;
+    color:$main;
+    display:flex;
+}
+
+.profile-content{
+    margin-left:30px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.subtitle{
+    height:100px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:black;
+}
+
+.books-container{
+    background-color:$sub;
+}
+
+.btn-container{
+    padding-top:35px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    a{
+        color:white;
+        display:inline-block;
+        background-color:rgba($main, 0.85);
+        padding:10px 20px;
+        margin:10px 30px;
+        border-radius:15px;
+        text-decoration:none;
+        box-shadow:5px 5px #000;
+        &:hover{
+            background-color:rgba($main, 1);
+        }
+        &:active{
+            box-shadow:none;
+            position:relative;
+            top:5px;
+            left:5px;
+        }
+    }
+    input{
+        border:none;
+        margin-top:20px;
+        padding:5px 10px;
+        border-radius:5px;
+        color:$main;
+        background-color:rgba($sub, 0.85);
+        &:hover{
+            background-color:rgba($sub, 1);
+        }
+    }
+}

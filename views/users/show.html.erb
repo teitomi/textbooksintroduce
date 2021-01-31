@@ -1,0 +1,38 @@
+<%= stylesheet_link_tag 'mypage', :media => "all" %>
+
+<div class="maintitle">
+  <h2>マイページ</h2>
+</div>
+
+<div class="profile">
+  <div class="image">
+    <h3>プロフィール画像</h3>
+    <%= image_tag @user.image_url, size: "250x200" if @user.image? %>
+  </div>
+  <div class="profile-content">
+    <h3>名前 : <%= @user.name %></h3>
+    <h3>学年 : <%= @user.grade %></h3>
+    <h3>プロフィール : <%= @user.profile %></h3>
+    <h3>メールアドレス : <%= @user.email %></h3>
+    <% if user_signed_in? && current_user.id == @user.id %>
+      <%= link_to "編集する", edit_user_registration_path %>
+    <% end %>
+  </div>
+</div>
+
+<div class="subtitle">
+  <h2>本棚にしまった本の一覧</h2>
+</div>
+
+<div class="books-container">
+  <%= page_entries_info @books %>
+  <%= render partial: 'books/books', locals: {books: @user.books} %>
+  <%= paginate @books %>
+</div>
+
+<div class="btn-container">
+  <%= link_to "自習室に戻る", books_path %>
+  <% if user_signed_in? && current_user.id == @user.id %>
+    <%= button_to 'ログアウト', destroy_user_session_path, method: :delete %>
+  <% end %>
+</div>

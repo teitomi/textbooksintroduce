@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Textbooks</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <div class="title">
+        <h1><%= link_to "See to meet", hello_path %></h1>
+        <h2><%= link_to "~こだわりの1冊に出会える自習室~", hello_path %></h2>
+      </div>
+      <div class="links">
+      <% if user_signed_in? %>
+        <h3><%= link_to "マイページ", user_path(current_user.id) %></h3>
+      <% else %>
+          <h3><%= link_to "新規登録", new_user_registration_path %></h3>
+          <h3><%= link_to "ログイン", new_user_session_path %></h3>
+      <% end %>
+      </div>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
+    <div class="push"></div>
+    <footer>
+      <p>Copyright ©️　Iori All Rights Reserved.</P>
+    </footer>
+  </body>
+
+</html>

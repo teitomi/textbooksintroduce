@@ -1,0 +1,94 @@
+<%= stylesheet_link_tag 'show', :media => "all" %>
+
+<div class="subtitle">
+    <h2>参考書・問題集の詳細</h2>
+</div>
+
+<div class="books-container">
+
+    <div class="book">
+        <div class="review-container">
+            <div class="about">
+                <h4>参考書・問題集の名前</h4>
+                <p><%= @book.title %></p>
+                <h4>参考書・問題集の写真</h4>
+                <%= image_tag @book.image_url, size: "250x200" if @book.image? %>
+            </div>
+            <div class="suitable">
+                <h4>科目</h4>
+                <p><%= @book.subject %></p>
+                <h4>誰向けの参考書・問題集か</h4>
+                <p><%= @book.suitable %></p>
+            </div>
+            <div class="review">
+                <h4>レビュー本文</h4>
+                <p><%= @book.review %></p>
+            </div>
+        </div>
+        <div class="info">
+            <a href="/users/<%= @book.user.id %>"><%= @book.user.name %></a>
+            <% if user_signed_in? %>
+                <% if current_user.already_liked?(@book) %>
+                    <%= link_to book_like_path(@book), method: :delete do %>
+                        <i class="fas fa-heart"></i><%= @book.likes.count %>
+                    <% end %>
+                <% else %>
+                    <%= link_to book_likes_path(@book), method: :post do %>
+                        <i class="far fa-heart"></i><%= @book.likes.count %>
+                    <% end %>
+                <% end %>
+                <% if user_signed_in? && current_user.id == @book.user_id %>
+                    <%= link_to "編集する", edit_book_path(@book.id) %>
+                    <%= link_to "削除する", book_path(@book.id), method: :delete %>
+                <% end %>
+            <% else %>
+                <i class="far fa-heart"></i><%= @book.likes.count %>
+            <% end %>
+        </div>
+    </div>
+</div>
+
+<div class="comment-wrapper">
+    <% if user_signed_in? %>
+        <h2>コメントをする</h2>
+        <%= form_with(model: [@book, @comment], local: true) do |f| %>
+            <%= f.text_area :content, class: "comment_area" %>
+            <%= button_tag type: "submit" do %>
+                <i class="far fa-comments">送信</i>
+            <% end %>
+        <% end %>
+    <% else %>
+        <h4>コメントをするにはログインが必要です。</h4>
+    <% end %>
+</div>
+
+
+    <div class="info-wrapper">
+        <h2>コメント一覧</h2>
+        <div class="comments">
+            <% @comments.each do |c| %>
+                <div class="comment">
+                    <p><%= c.content %></p>
+                    <div class="comment-info">
+                        <p>by <%= c.user.name %></p>
+                        <% if user_signed_in? && current_user.id == c.user_id %>
+                            <%= button_to "削除する", book_comment_path(@book, c.id), method: :delete %>
+                        <% end %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+        
+        <div class="like-wrapper">
+            <h2>いいねしたユーザー</h2>
+            <div class="likes">
+                <% @book.liked_users.each do |user| %>
+                        <p><%= user.name %></p>
+                <% end %>
+            </div>
+        </div>
+    </div>
+
+<div class="back">
+    <%= link_to "自習室に戻る", books_path %>
+</div>

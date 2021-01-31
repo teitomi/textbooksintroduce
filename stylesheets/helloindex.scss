@@ -1,0 +1,48 @@
+@import "color";
+@import "post";
+
+.message{
+    background-image: url("space2.jpg");
+    background-color:white;
+    background-size: cover;
+    width: 100%;
+    height: 450px;
+    background-position:center center;
+    padding-top:240px;
+    padding-left:20px;
+    h3{
+        background-color:rgba(255, 255, 255, 0.8);
+        color:$main;
+        margin-bottom:10px;
+        height:30px;
+        display:inline-block;
+        padding-top:3px;
+    }
+}
+
+.btn-wrapper{
+    height:200px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    a{
+        color:white;
+        display:inline-block;
+        background-color:rgba($main, 0.85);
+        padding:10px 20px;
+        margin:10px 50px;
+        border-radius:15px;
+        text-decoration:none;
+        box-shadow:5px 5px #000;
+        &:hover{
+            background-color:rgba($main, 1);
+        }
+        &:active{
+            box-shadow:none;
+            position:relative;
+            top:5px;
+            left:5px;
+        }
+    }
+}

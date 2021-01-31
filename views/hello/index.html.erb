@@ -1,0 +1,24 @@
+<%= stylesheet_link_tag 'helloindex', :media => "all" %>
+
+<div class="message">
+    <h3>世の中にありふれている参考書や問題集。</h3>
+    <br>
+    <h3>どれを使うべきか決められない人が多いだろう。</h3>
+    <br>
+    <h3>しかし、大学受験を控えた高校生は時間もお金も有限。</h3>
+    <br>
+    <h3>そんな人達がこだわりを持って参考書や問題集の情報を得られる。</h3>
+    <br>
+    <h3>まるで参考書や問題集が集う自習室のような場所がここにある。</h3>
+</div>
+
+<div class="btn-wrapper">
+    <h2>さあ、とっておきの一冊とめぐりあおう！</h2> 
+    <h3><%= link_to "自習室に入る", books_path %></h3>
+</div>
+
+<div class="books-container">
+    <%= page_entries_info @books %>
+    <%= render partial: 'books/books', locals: {books: @books} %>
+    <%= paginate @books %>
+</div>
